@@ -70,7 +70,7 @@
                             aria-controls="pills-contact"
                             aria-selected="false"
                         >
-                            Test
+                            TestX
                         </button>
                     </li>
                 </ul>
@@ -84,6 +84,7 @@
                         <div v-for="item in data" :key="item.id">
                             <div>
                                 <h1>{{item.name}}</h1>
+                                <h1><a></a></h1>
                                 <h5></h5>
                                 <apexchart
                                     width="500"

@@ -2103,6 +2103,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", "#26a69a"];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43093,6 +43094,8 @@ var render = function() {
                     [
                       _c("h1", [_vm._v(_vm._s(item.name))]),
                       _vm._v(" "),
+                      _vm._m(1, true),
+                      _vm._v(" "),
                       _c("h5"),
                       _vm._v(" "),
                       _c("apexchart", {
@@ -43286,11 +43289,17 @@ var staticRenderFns = [
                 "aria-selected": "false"
               }
             },
-            [_vm._v("\n                        Test\n                    ")]
+            [_vm._v("\n                        TestX\n                    ")]
           )
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", [_c("a")])
   }
 ]
 render._withStripped = true
