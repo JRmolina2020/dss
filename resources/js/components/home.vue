@@ -83,9 +83,9 @@
                     >
                         <div v-for="item in data" :key="item.id">
                             <div>
-                                <h1>{{item.name}}</h1>
-                                <h1><a></a></h1>
-                                <h5></h5>
+                                <h1>{{ item.name }}</h1>
+                                <h1>{{ item.links }}</h1>
+
                                 <apexchart
                                     width="500"
                                     type="bar"

@@ -43094,9 +43094,7 @@ var render = function() {
                     [
                       _c("h1", [_vm._v(_vm._s(item.name))]),
                       _vm._v(" "),
-                      _vm._m(1, true),
-                      _vm._v(" "),
-                      _c("h5"),
+                      _c("h1", [_vm._v(_vm._s(item.links))]),
                       _vm._v(" "),
                       _c("apexchart", {
                         attrs: {
@@ -43294,12 +43292,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h1", [_c("a")])
   }
 ]
 render._withStripped = true
