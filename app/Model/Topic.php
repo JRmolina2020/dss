@@ -9,6 +9,8 @@ class Topic extends Model
     protected $table = 'topics';
 
       protected $fillable = [
-        'name', 'type', 'anger','disgust','fear','joy','surprise','neutro','sadness','pos','neg','mpos','mneg'
+        'name', 'link','type','text','user','re', 
+        'anger','disgust','fear','joy','surprise','neutro',
+        'sadness','pos','neg','mpos','mneg','ex','pre','se','es'
     ];
 }

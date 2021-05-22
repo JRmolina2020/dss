@@ -39,6 +39,17 @@
                         />
                     </div>
                 </div>
+                    <div class="col-lg-2">
+                    <label for="">link</label>
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            placeholder="link"
+                            class="form-control"
+                            v-model.number="form.link"
+                        />
+                    </div>
+                </div>
             </div>
             <div class="row mt-3">
                 <div class="col-lg-2">
@@ -150,6 +161,80 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="">user</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="form.user"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="">text</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="form.text"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">cantidad</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model.number="form.re"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">exactitud</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model.number="form.ex"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">precision</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model.number="form.pre"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">sensibilidad</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model.number="form.se"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">especificidad</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model.number="form.es"
+                        />
+                    </div>
+                </div>
+            </div>
 
             <div class="row mt-3">
                 <button type="subtmit" class="btn btn-primary btn-xs">
@@ -244,6 +329,10 @@ export default {
             form: {
                 id: null,
                 name: "",
+                text: "",
+                link:'',
+                user: "",
+                re: 0,
                 type: "",
                 anger: 0,
                 disgust: 0,
@@ -255,7 +344,11 @@ export default {
                 pos: 0,
                 neg: 0,
                 mpos: 0,
-                mneg: 0
+                mneg: 0,
+                pre: 0,
+                ex: 0,
+                se: 0,
+                es: 0
             }
         };
     },
@@ -293,6 +386,10 @@ export default {
         show(item) {
             this.form.id = item.id;
             this.form.name = item.name;
+            this.form.link=item.link;
+            this.form.text = item.text;
+            this.form.user = item.user;
+            this.form.re = item.re;
             this.form.type = item.type;
             this.form.anger = item.anger;
             this.form.joy = item.joy;
@@ -305,9 +402,16 @@ export default {
             this.form.neg = item.neg;
             this.form.mpos = item.mpos;
             this.form.mneg = item.mneg;
+            this.form.pre = item.pre;
+            this.form.ex = item.ex;
+            this.form.se = item.se;
+            this.form.es = item.es;
         },
         clear() {
             this.form.name = "";
+            this.form.text = "";
+            this.form.user = "";
+            this.form.re = 0;
             this.form.type = "";
             this.form.anger = 0;
             this.form.joy = 0;
@@ -316,6 +420,11 @@ export default {
             this.form.sadness = 0;
             this.form.fear = 0;
             this.form.disgust = 0;
+            this.form.pre = 0;
+            this.form.ex = 0;
+            this.form.se = 0;
+            this.form.es = 0;
+            this.form.link='';
         }
     },
     computed: {

@@ -83,9 +83,10 @@
                     >
                         <div v-for="item in data" :key="item.id">
                             <div>
-                                <h1>{{ item.name }}</h1>
-                                <h1>{{ item.links }}</h1>
-
+                                <h1>
+                                    <a :href="item.link">{{ item.name }}</a>
+                                </h1>
+                                <h5>Distribución de sentimientos</h5>
                                 <apexchart
                                     width="500"
                                     type="bar"
@@ -112,7 +113,7 @@
                                     {{ item.mpos }} usuarios generaron
                                     comentarios muy positivos, a comparación de
                                     los muy negativos que fue un total de
-                                    {{ item.mneg }}
+                                    {{ item.mneg }} comentarios.
                                 </p>
                                 <p>
                                     <strong>Conclusión: </strong>
@@ -128,6 +129,18 @@
                         aria-labelledby="pills-profile-tab"
                     >
                         <div>
+                            <h5>Comentario popular referente</h5>
+                            <div
+                                v-for="item in data"
+                                :key="item.id"
+                                class="col-lg-12 jumbotron"
+                            >
+                                <p>{{ item.user }}</p>
+                                <p>DESCRIPTION TEXT COMENT</p>
+                                <strong>{{ item.text }}</strong>
+                                <p>TOT RETWEET</p>
+                                <p>{{ item.re }}</p>
+                            </div>
                             <center>
                                 <h3>Frecuencia de palabras por tweet</h3>
                             </center>
@@ -152,7 +165,35 @@
                         role="tabpanel"
                         aria-labelledby="pills-contact-tab"
                     >
-                        ...
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Precisión</th>
+                                    <th>Exactitud</th>
+                                    <th>Sensibilidad</th>
+                                    <th>Especificidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="item in data"
+                                    :key="item.id"
+                                    class="col-lg-12 jumbotron"
+                                >
+                                    <td>{{ item.pre }}%</td>
+                                    <td>{{ item.ex }}%</td>
+                                    <td>{{ item.se }}%</td>
+                                    <td>{{ item.es }}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            En el estudio realizado, la (precisión) toma como la
+                            metrica más importante para evaluar el
+                            comportamiento del modelo,ya que este ítem de la
+                            evaluación representa lo cerca que esta el resultado
+                            de la predicción del valor verdadero, es importa.
+                        </p>
                     </div>
                 </div>
             </div>

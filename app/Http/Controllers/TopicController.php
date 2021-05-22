@@ -29,7 +29,11 @@ class TopicController extends Controller
         $topics =Topic::find($id, ['id', 'name']);
         $topics->fill([
             'name' => request('name'),
+            'link' => request('link'),
             'type' => request('type'),
+            'user' => request('user'),
+            'text' => request('text'),
+            're' => request('re'),
             'anger' => request('anger'),
             'disgust' => request('disgust'),
             'fear' => request('fear'),
@@ -41,6 +45,10 @@ class TopicController extends Controller
               'neg' => request('neg'),
              'mpos' => request('mpos'),
               'mneg' => request('mneg'),
+              'ex' => request('ex'),
+              'pre' => request('pre'),
+              'se' => request('se'),
+              'es' => request('es'),
              
         ])->save();
         return response()->json(['message' => 'El tema ha sido modificado'], 201);

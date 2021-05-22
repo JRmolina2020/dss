@@ -2104,6 +2104,47 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", "#26a69a"];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2569,6 +2610,91 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "topics",
   data: function data() {
@@ -2578,6 +2704,10 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         id: null,
         name: "",
+        text: "",
+        link: '',
+        user: "",
+        re: 0,
         type: "",
         anger: 0,
         disgust: 0,
@@ -2589,7 +2719,11 @@ __webpack_require__.r(__webpack_exports__);
         pos: 0,
         neg: 0,
         mpos: 0,
-        mneg: 0
+        mneg: 0,
+        pre: 0,
+        ex: 0,
+        se: 0,
+        es: 0
       }
     };
   },
@@ -2629,6 +2763,10 @@ __webpack_require__.r(__webpack_exports__);
     show: function show(item) {
       this.form.id = item.id;
       this.form.name = item.name;
+      this.form.link = item.link;
+      this.form.text = item.text;
+      this.form.user = item.user;
+      this.form.re = item.re;
       this.form.type = item.type;
       this.form.anger = item.anger;
       this.form.joy = item.joy;
@@ -2641,9 +2779,16 @@ __webpack_require__.r(__webpack_exports__);
       this.form.neg = item.neg;
       this.form.mpos = item.mpos;
       this.form.mneg = item.mneg;
+      this.form.pre = item.pre;
+      this.form.ex = item.ex;
+      this.form.se = item.se;
+      this.form.es = item.es;
     },
     clear: function clear() {
       this.form.name = "";
+      this.form.text = "";
+      this.form.user = "";
+      this.form.re = 0;
       this.form.type = "";
       this.form.anger = 0;
       this.form.joy = 0;
@@ -2652,6 +2797,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.sadness = 0;
       this.form.fear = 0;
       this.form.disgust = 0;
+      this.form.pre = 0;
+      this.form.ex = 0;
+      this.form.se = 0;
+      this.form.es = 0;
+      this.form.link = '';
     }
   },
   computed: {
@@ -43092,9 +43242,13 @@ var render = function() {
                   _c(
                     "div",
                     [
-                      _c("h1", [_vm._v(_vm._s(item.name))]),
+                      _c("h1", [
+                        _c("a", { attrs: { href: item.link } }, [
+                          _vm._v(_vm._s(item.name))
+                        ])
+                      ]),
                       _vm._v(" "),
-                      _c("h1", [_vm._v(_vm._s(item.links))]),
+                      _c("h5", [_vm._v("Distribución de sentimientos")]),
                       _vm._v(" "),
                       _c("apexchart", {
                         attrs: {
@@ -43139,7 +43293,7 @@ var render = function() {
                             _vm._s(item.mpos) +
                             " usuarios generaron\n                                comentarios muy positivos, a comparación de\n                                los muy negativos que fue un total de\n                                " +
                             _vm._s(item.mneg) +
-                            "\n                            "
+                            " comentarios.\n                            "
                         )
                       ]),
                       _vm._v(" "),
@@ -43173,6 +43327,26 @@ var render = function() {
                 _c(
                   "div",
                   [
+                    _c("h5", [_vm._v("Comentario popular referente")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.data, function(item) {
+                      return _c(
+                        "div",
+                        { key: item.id, staticClass: "col-lg-12 jumbotron" },
+                        [
+                          _c("p", [_vm._v(_vm._s(item.user))]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("DESCRIPTION TEXT COMENT")]),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v(_vm._s(item.text))]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("TOT RETWEET")]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(item.re))])
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
                     _c("center", [
                       _c("h3", [_vm._v("Frecuencia de palabras por tweet")])
                     ]),
@@ -43199,7 +43373,7 @@ var render = function() {
                       )
                     ])
                   ],
-                  1
+                  2
                 )
               ]
             ),
@@ -43214,7 +43388,37 @@ var render = function() {
                   "aria-labelledby": "pills-contact-tab"
                 }
               },
-              [_vm._v("\n                    ...\n                ")]
+              [
+                _c("table", { staticClass: "table table-dark" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.data, function(item) {
+                      return _c(
+                        "tr",
+                        { key: item.id, staticClass: "col-lg-12 jumbotron" },
+                        [
+                          _c("td", [_vm._v(_vm._s(item.pre) + "%")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.ex) + "%")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.se) + "%")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.es) + "%")])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                        En el estudio realizado, la (precisión) toma como la\n                        metrica más importante para evaluar el\n                        comportamiento del modelo,ya que este ítem de la\n                        evaluación representa lo cerca que esta el resultado\n                        de la predicción del valor verdadero, es importa.\n                    "
+                  )
+                ])
+              ]
             )
           ]
         )
@@ -43292,6 +43496,22 @@ var staticRenderFns = [
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Precisión")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Exactitud")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sensibilidad")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Especificidad")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -43448,6 +43668,38 @@ var render = function() {
                       return
                     }
                     _vm.$set(_vm.form, "neutro", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("link")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.link,
+                    expression: "form.link",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "link" },
+                domProps: { value: _vm.form.link },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "link", _vm._n($event.target.value))
                   },
                   blur: function($event) {
                     return _vm.$forceUpdate()
@@ -43772,6 +44024,226 @@ var render = function() {
                       return
                     }
                     _vm.$set(_vm.form, "mneg", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("user")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.user,
+                    expression: "form.user"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.form.user },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "user", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("text")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.text,
+                    expression: "form.text"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.form.text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "text", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("cantidad")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.re,
+                    expression: "form.re",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.re },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "re", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("exactitud")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.ex,
+                    expression: "form.ex",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.ex },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "ex", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("precision")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.pre,
+                    expression: "form.pre",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.pre },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "pre", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("sensibilidad")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.se,
+                    expression: "form.se",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.se },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "se", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("especificidad")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.es,
+                    expression: "form.es",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.es },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "es", _vm._n($event.target.value))
                   },
                   blur: function($event) {
                     return _vm.$forceUpdate()

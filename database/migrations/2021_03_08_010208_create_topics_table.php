@@ -16,7 +16,11 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
             $table->string('name',50);
+            $table->string('link',100);
             $table->string('type',20);
+            $table->string('user',50);
+            $table->longText('text');
+            $table->integer('re');
             $table->integer('anger');
             $table->integer('disgust');
             $table->integer('fear');
@@ -28,6 +32,11 @@ class CreateTopicsTable extends Migration
             $table->integer('neg');
             $table->integer('mpos');
             $table->integer('mneg');
+            $table->integer('ex');
+            $table->integer('pre');
+            $table->integer('se');
+            $table->integer('es');
+
             $table->timestamps();
         });
     }
