@@ -119,7 +119,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p class="text-left">
+                                <p class="text-justify">
                                     En el estudio realizado, la (precisión) se
                                     toma como la metrica más importante para
                                     evaluar el comportamiento del modelo,ya que
@@ -129,13 +129,16 @@
                                 </p>
                                 <div>
                                     <div v-for="item in data" :key="item.id">
-                                        <p v-if="item.pre > me">
+                                        <p
+                                            class="text-justify"
+                                            v-if="item.pre > me"
+                                        >
                                             Como criterio de éxito se obtiene un
                                             porcentaje de {{ item.pre - me }}%
                                             de diferencia al caso de éxito
                                             plateado en el proyecto.
                                         </p>
-                                        <p v-else>
+                                        <p v-else class="text-justify">
                                             Como criterio de éxito se obtiene un
                                             porcentaje de {{ me - item.pre }}%
                                             de diferencia al caso de éxito
@@ -154,20 +157,19 @@
                                     :series="series2"
                                 ></apexchart>
                                 <div></div>
-                                <p class="text-left">
-                                    <strong>{{ item.pos }}</strong> usuarios
-                                    expresaron comentarios positivos acerca del
-                                    tema {{ item.name }},
-                                    <strong>{{ item.neg }}</strong> usuarios
+                                <p class="text-justify">
+                                    {{ item.pos }} usuarios expresaron
+                                    comentarios positivos acerca del tema
+                                    {{ item.name }} , {{ item.neg }} usuarios
                                     generaron comentarios negativos acerca del
                                     tema {{ item.name }},
-                                    <strong>{{ item.mpos }}</strong> usuarios
-                                    generaron comentarios muy positivos, a
-                                    comparación de los muy negativos que fue un
-                                    total de
-                                    <strong>{{ item.mneg }}</strong>
-                                    comentarios.
+                                    {{ item.mpos }} usuarios generaron
+                                    comentarios muy positivos, a comparación de
+                                    los muy negativos que fue un total de{{
+                                        item.mneg
+                                    }}comentarios.
                                 </p>
+
                                 <p>
                                     <strong>Conclusión: </strong>
                                     {{ sabertext }}
@@ -409,7 +411,7 @@ export default {
             Swal.fire({
                 title: "CARGANDO",
                 html: "Extrayendo información",
-                timer: 5000,
+                timer: 7000,
                 imageUrl:
                     "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
                 imageHeight: 200,

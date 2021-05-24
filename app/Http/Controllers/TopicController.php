@@ -10,12 +10,12 @@ class TopicController extends Controller
 {
   public function index()
     {
-        $topics = Topic::get();
+        $topics = Topic::OrderBy('id','DESC')->get();
         return $topics;
     }
     public function indexTwo($id)
     {
-        $topics = Topic::where('id', $id)->get();
+        $topics = Topic::where('id', $id)->OrderBy('id','DESC')->get();
         return $topics;
     }
     public function store(Request $request)
