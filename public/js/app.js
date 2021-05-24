@@ -2161,6 +2161,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", "#26a69a"];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43028,7 +43029,9 @@ var render = function() {
                           return _c("tr", { key: item.id }, [
                             _c("td", { attrs: { scope: "row" } }, [
                               _vm._v(_vm._s(item.name))
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(item.pun))])
                           ])
                         }),
                         0
@@ -43052,9 +43055,7 @@ var render = function() {
                           return _c("tr", { key: item.id }, [
                             _c("td", { attrs: { scope: "row" } }, [
                               _vm._v(_vm._s(item.name))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(item.pun))])
+                            ])
                           ])
                         }),
                         0
@@ -43151,7 +43152,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [_c("tr", [_c("th", [_vm._v("PALABRA")])])])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("PALABRA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FREQ")])
+      ])
+    ])
   },
   function() {
     var _vm = this

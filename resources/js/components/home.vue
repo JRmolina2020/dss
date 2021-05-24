@@ -176,11 +176,13 @@
                                 <thead>
                                     <tr>
                                         <th>PALABRA</th>
+                                        <th>FREQ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="item in dataWord" :key="item.id">
                                         <td scope="row">{{ item.name }}</td>
+                                        <td>{{ item.pun }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -201,7 +203,6 @@
                                 <tbody>
                                     <tr v-for="item in dataCity" :key="item.id">
                                         <td scope="row">{{ item.name }}</td>
-                                        <td>{{ item.pun }}</td>
                                     </tr>
                                 </tbody>
                             </table>
