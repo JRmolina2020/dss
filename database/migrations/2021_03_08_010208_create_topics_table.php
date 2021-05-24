@@ -18,8 +18,6 @@ class CreateTopicsTable extends Migration
             $table->string('name',50);
             $table->string('link',100);
             $table->string('type',20);
-            $table->string('user',50);
-            $table->longText('text');
             $table->integer('re');
             $table->integer('anger');
             $table->integer('disgust');

@@ -15,9 +15,11 @@ Route::get('words', function () {
 
  Route::post('topics', 'TopicController@store');
   Route::post('words', 'WordsController@store');
+  Route::post('cities', 'CityController@store');
  Route::get('topics', 'TopicController@index');
   Route::get('topics/{id}', 'TopicController@indexTwo');
     Route::get('words/{id}', 'WordsController@indexTwo');
+      Route::get('cities/{id}', 'CityController@indexTwo');
  Route::delete('topics/{id}', 'TopicController@destroy');
  Route::put('topics/{id}', 'TopicController@update');
   

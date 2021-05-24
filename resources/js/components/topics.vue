@@ -39,7 +39,7 @@
                         />
                     </div>
                 </div>
-                    <div class="col-lg-2">
+                <div class="col-lg-2">
                     <label for="">link</label>
                     <div class="form-group">
                         <input
@@ -47,6 +47,16 @@
                             placeholder="link"
                             class="form-control"
                             v-model.number="form.link"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">cantidad</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model.number="form.re"
                         />
                     </div>
                 </div>
@@ -162,38 +172,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="">user</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            v-model="form.user"
-                        />
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="">text</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            v-model="form.text"
-                        />
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        <label for="">cantidad</label>
-                        <input
-                            type="number"
-                            class="form-control"
-                            v-model.number="form.re"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label for="">exactitud</label>
@@ -251,12 +229,12 @@
             <div class="row">
                 <p>sentimientos</p>
                 <h5>VAN {{ tot }}</h5>
-                <h5>FALTAN {{ limit - tot }}</h5>
+                <h5>FALTAN {{ form.re - tot }}</h5>
             </div>
             <div class="row">
                 <p>polar</p>
                 <h5>VAN {{ tot2 }}</h5>
-                <h5>FALTAN {{ limit - tot2 }}</h5>
+                <h5>FALTAN {{ form.re - tot2 }}</h5>
             </div>
             <div class="row">
                 <table class="table">
@@ -277,6 +255,7 @@
                             <th>MNEG</th>
                             <th>U</th>
                             <th>E</th>
+                            <th>C</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -294,6 +273,7 @@
                             <td>{{ item.neg }}</td>
                             <td>{{ item.mpos }}</td>
                             <td>{{ item.mneg }}</td>
+                            <td>{{ item.re }}</td>
                             <td>
                                 <button
                                     @click="show(item)"
@@ -330,7 +310,7 @@ export default {
                 id: null,
                 name: "",
                 text: "",
-                link:'',
+                link: "",
                 user: "",
                 re: 0,
                 type: "",
@@ -386,9 +366,7 @@ export default {
         show(item) {
             this.form.id = item.id;
             this.form.name = item.name;
-            this.form.link=item.link;
-            this.form.text = item.text;
-            this.form.user = item.user;
+            this.form.link = item.link;
             this.form.re = item.re;
             this.form.type = item.type;
             this.form.anger = item.anger;
@@ -409,8 +387,6 @@ export default {
         },
         clear() {
             this.form.name = "";
-            this.form.text = "";
-            this.form.user = "";
             this.form.re = 0;
             this.form.type = "";
             this.form.anger = 0;
@@ -424,7 +400,7 @@ export default {
             this.form.ex = 0;
             this.form.se = 0;
             this.form.es = 0;
-            this.form.link='';
+            this.form.link = "";
         }
     },
     computed: {

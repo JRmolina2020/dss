@@ -15,9 +15,9 @@
                 <div class="form-group">
                     <label for=""># Tendencia</label>
                     <select
+                        @change="getUnit()"
                         class="form-control"
                         v-model="select"
-                        @change="getUnit()"
                     >
                         <option
                             v-for="item in form.select"
@@ -59,20 +59,6 @@
                             Resumen
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button
-                            class="nav-link"
-                            id="pills-contact-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#pills-contact"
-                            type="button"
-                            role="tab"
-                            aria-controls="pills-contact"
-                            aria-selected="false"
-                        >
-                            TestX
-                        </button>
-                    </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div
@@ -86,6 +72,13 @@
                                 <h1>
                                     <a :href="item.link">{{ item.name }}</a>
                                 </h1>
+                                <h5>{{ item.re }} Tweets Descargados</h5>
+                                <p>
+                                    <strong
+                                        >Usted ha escogido un tipo de tema
+                                        tendencia {{ item.type }}</strong
+                                    >
+                                </p>
                                 <h5>Distribución de sentimientos</h5>
                                 <apexchart
                                     width="500"
@@ -93,6 +86,50 @@
                                     :options="chartOptions"
                                     :series="series"
                                 ></apexchart>
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Precisión</th>
+                                            <th>Exactitud</th>
+                                            <th>Sensibilidad</th>
+                                            <th>Especificidad</th>
+                                            <th>CE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            v-for="item in data"
+                                            :key="item.id"
+                                            class="col-lg-12 jumbotron"
+                                        >
+                                            <td class="table-primary">
+                                                {{ item.pre }}%
+                                            </td>
+                                            <td>{{ item.ex }}%</td>
+                                            <td>{{ item.se }}%</td>
+                                            <td>{{ item.es }}%</td>
+                                            <td class="table-primary">
+                                                {{ me }}%
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                    En el estudio realizado, la (precisión) se
+                                    toma como la metrica más importante para
+                                    evaluar el comportamiento del modelo,ya que
+                                    este ítem de la evaluación representa lo
+                                    cerca que esta el resultado de la predicción
+                                    del valor verdadero.
+                                </p>
+                                <div>
+                                    <p v-for="item in data" :key="item.id">
+                                        Como criterio de éxito se obtiene un
+                                        porcentaje de {{ item.pre - me }}% de
+                                        diferencia al caso de éxito plateado en
+                                        el proyecto.
+                                    </p>
+                                </div>
                             </div>
 
                             <div id="chart">
@@ -105,15 +142,18 @@
                                 ></apexchart>
                                 <div></div>
                                 <p>
-                                    {{ item.pos }} usuarios expresarón
-                                    comentarios positivos acerca del tema
-                                    {{ item.name }}, {{ item.neg }} usuarios
+                                    <strong>{{ item.pos }}</strong> usuarios
+                                    expresarón comentarios positivos acerca del
+                                    tema {{ item.name }},
+                                    <strong>{{ item.neg }}</strong> usuarios
                                     generaron comentarios negativos acerca del
                                     tema {{ item.name }},
-                                    {{ item.mpos }} usuarios generaron
-                                    comentarios muy positivos, a comparación de
-                                    los muy negativos que fue un total de
-                                    {{ item.mneg }} comentarios.
+                                    <strong>{{ item.mpos }}</strong> usuarios
+                                    generaron comentarios muy positivos, a
+                                    comparación de los muy negativos que fue un
+                                    total de
+                                    <strong>{{ item.mneg }}</strong>
+                                    comentarios.
                                 </p>
                                 <p>
                                     <strong>Conclusión: </strong>
@@ -129,71 +169,50 @@
                         aria-labelledby="pills-profile-tab"
                     >
                         <div>
-                            <h5>Comentario popular referente</h5>
-                            <div
-                                v-for="item in data"
-                                :key="item.id"
-                                class="col-lg-12 jumbotron"
-                            >
-                                <p>{{ item.user }}</p>
-                                <p>DESCRIPTION TEXT COMENT</p>
-                                <strong>{{ item.text }}</strong>
-                                <p>TOT RETWEET</p>
-                                <p>{{ item.re }}</p>
-                            </div>
                             <center>
                                 <h3>Frecuencia de palabras por tweet</h3>
                             </center>
-                            <div id="chart2">
-                                <apexchart
-                                    type="pie"
-                                    width="480"
-                                    :options="chartOptions3"
-                                    :series="datapun"
-                                ></apexchart>
-                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>PALABRA</th>
+                                        <th>FREQ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in dataWord" :key="item.id">
+                                        <td scope="row">{{ item.name }}</td>
+                                        <td>{{ item.pun }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <p>
-                                En el anterior grafico se representa las 10
-                                palabras mas mencionadas en el conjunto de datos
+                                En la anterior tabla se representa las palabras
+                                más mencionadas en el conjunto de datos
                                 extraídos acerca del tema tedencia
                             </p>
+                            <center>
+                                <h3>Ciudades activas</h3>
+                            </center>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>PALABRA</th>
+                                        <th>FREQ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in dataCity" :key="item.id">
+                                        <td scope="row">{{ item.name }}</td>
+                                        <td>{{ item.pun }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                En la anterior tabla se representa las ciudades
+                                más activas con respecto al tema tendencia
+                            </p>
                         </div>
-                    </div>
-                    <div
-                        class="tab-pane fade"
-                        id="pills-contact"
-                        role="tabpanel"
-                        aria-labelledby="pills-contact-tab"
-                    >
-                        <table class="table table-dark">
-                            <thead>
-                                <tr>
-                                    <th>Precisión</th>
-                                    <th>Exactitud</th>
-                                    <th>Sensibilidad</th>
-                                    <th>Especificidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr
-                                    v-for="item in data"
-                                    :key="item.id"
-                                    class="col-lg-12 jumbotron"
-                                >
-                                    <td>{{ item.pre }}%</td>
-                                    <td>{{ item.ex }}%</td>
-                                    <td>{{ item.se }}%</td>
-                                    <td>{{ item.es }}%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>
-                            En el estudio realizado, la (precisión) toma como la
-                            metrica más importante para evaluar el
-                            comportamiento del modelo,ya que este ítem de la
-                            evaluación representa lo cerca que esta el resultado
-                            de la predicción del valor verdadero, es importa.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -218,6 +237,7 @@ export default {
     data() {
         return {
             sabertext: "",
+            me: 68,
             //star
 
             chartOptions2: {
@@ -318,7 +338,7 @@ export default {
             datapun: [],
             datalet: [],
             dataWord: [],
-
+            dataCity: [],
             form: {
                 select: []
             }
@@ -334,13 +354,6 @@ export default {
             }
 
             return seriesdata2;
-        },
-
-        series3() {
-            for (let i = 0; i < this.dataWord.length; i++) {
-                var seriesx = this.dataWord[i].pun;
-            }
-            return seriesx;
         },
 
         series() {
@@ -372,11 +385,11 @@ export default {
         getWordunit() {
             axios.get("words/" + this.select).then(result => {
                 this.dataWord = result.data;
-                for (let i = 0; i < this.dataWord.length; i++) {
-                    this.datapun.push(this.dataWord[i].pun);
-
-                    this.chartOptions3.labels.push(this.dataWord[i].name);
-                }
+            });
+        },
+        getCity() {
+            axios.get("cities/" + this.select).then(result => {
+                this.dataCity = result.data;
             });
         },
 
@@ -416,7 +429,9 @@ export default {
                             }
                         }
                     });
+
                     this.getWordunit();
+                    this.getCity();
                 }
             }).then(result => {});
         }

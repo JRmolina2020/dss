@@ -2145,6 +2145,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", "#26a69a"];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2152,6 +2171,7 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
   data: function data() {
     return {
       sabertext: "",
+      me: 68,
       //star
       chartOptions2: {
         chart: {
@@ -2231,6 +2251,7 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       datapun: [],
       datalet: [],
       dataWord: [],
+      dataCity: [],
       form: {
         select: []
       }
@@ -2256,13 +2277,6 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       }
 
       return seriesdata2;
-    },
-    series3: function series3() {
-      for (var i = 0; i < this.dataWord.length; i++) {
-        var seriesx = this.dataWord[i].pun;
-      }
-
-      return seriesx;
     },
     series: function series() {
       var _iterator2 = _createForOfIteratorHelper(this.data),
@@ -2297,16 +2311,17 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
 
       axios.get("words/" + this.select).then(function (result) {
         _this2.dataWord = result.data;
+      });
+    },
+    getCity: function getCity() {
+      var _this3 = this;
 
-        for (var i = 0; i < _this2.dataWord.length; i++) {
-          _this2.datapun.push(_this2.dataWord[i].pun);
-
-          _this2.chartOptions3.labels.push(_this2.dataWord[i].name);
-        }
+      axios.get("cities/" + this.select).then(function (result) {
+        _this3.dataCity = result.data;
       });
     },
     getUnit: function getUnit() {
-      var _this3 = this;
+      var _this4 = this;
 
       var timerInterval;
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
@@ -2333,10 +2348,10 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
         },
         willClose: function willClose() {
           clearInterval(timerInterval);
-          axios.get("topics/" + _this3.select).then(function (result) {
-            _this3.data = result.data;
+          axios.get("topics/" + _this4.select).then(function (result) {
+            _this4.data = result.data;
 
-            var _iterator3 = _createForOfIteratorHelper(_this3.data),
+            var _iterator3 = _createForOfIteratorHelper(_this4.data),
                 _step3;
 
             try {
@@ -2344,9 +2359,9 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
                 var item = _step3.value;
 
                 if (item.pos > item.neg) {
-                  _this3.sabertext = "Hay usuarios m\xE1s a favor que encontra ha serca del tema ".concat(item.name, " ");
+                  _this4.sabertext = "Hay usuarios m\xE1s a favor que encontra ha serca del tema ".concat(item.name, " ");
                 } else {
-                  _this3.sabertext = "Hay usuarios m\xE1s encontra que a favor a serca del tema ".concat(item.name, " ");
+                  _this4.sabertext = "Hay usuarios m\xE1s encontra que a favor a serca del tema ".concat(item.name, " ");
                 }
               }
             } catch (err) {
@@ -2356,7 +2371,9 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
             }
           });
 
-          _this3.getWordunit();
+          _this4.getWordunit();
+
+          _this4.getCity();
         }
       }).then(function (result) {});
     }
@@ -2675,26 +2692,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "topics",
   data: function data() {
@@ -2705,7 +2702,7 @@ __webpack_require__.r(__webpack_exports__);
         id: null,
         name: "",
         text: "",
-        link: '',
+        link: "",
         user: "",
         re: 0,
         type: "",
@@ -2764,8 +2761,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form.id = item.id;
       this.form.name = item.name;
       this.form.link = item.link;
-      this.form.text = item.text;
-      this.form.user = item.user;
       this.form.re = item.re;
       this.form.type = item.type;
       this.form.anger = item.anger;
@@ -2786,8 +2781,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     clear: function clear() {
       this.form.name = "";
-      this.form.text = "";
-      this.form.user = "";
       this.form.re = 0;
       this.form.type = "";
       this.form.anger = 0;
@@ -2801,7 +2794,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.ex = 0;
       this.form.se = 0;
       this.form.es = 0;
-      this.form.link = '';
+      this.form.link = "";
     }
   },
   computed: {
@@ -2885,12 +2878,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "topics",
   data: function data() {
     return {
       data: [],
       form: {
+        topic_id: null,
+        name: "",
+        pun: 0
+      },
+      formc: {
         topic_id: null,
         name: "",
         pun: 0
@@ -2909,11 +2944,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.form.pun = null;
       });
     },
-    getUnit: function getUnit() {
+    addc: function addc() {
       var _this2 = this;
 
+      axios.post("cities", this.formc).then(function (result) {
+        _this2.formc.name = "";
+        _this2.formc.pun = null;
+      });
+    },
+    getUnit: function getUnit() {
+      var _this3 = this;
+
       axios.get("topics/").then(function (result) {
-        _this2.data = result.data;
+        _this3.data = result.data;
       });
     }
   }
@@ -43248,6 +43291,19 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(_vm._s(item.re) + " Tweets Descargados")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _c("strong", [
+                          _vm._v(
+                            "Usted ha escogido un tipo de tema\n                                    tendencia " +
+                              _vm._s(item.type)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c("h5", [_vm._v("Distribución de sentimientos")]),
                       _vm._v(" "),
                       _c("apexchart", {
@@ -43257,7 +43313,68 @@ var render = function() {
                           options: _vm.chartOptions,
                           series: _vm.series
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c("table", { staticClass: "table table-dark" }, [
+                        _vm._m(1, true),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.data, function(item) {
+                            return _c(
+                              "tr",
+                              {
+                                key: item.id,
+                                staticClass: "col-lg-12 jumbotron"
+                              },
+                              [
+                                _c("td", { staticClass: "table-primary" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(item.pre) +
+                                      "%\n                                        "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.ex) + "%")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.se) + "%")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.es) + "%")]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "table-primary" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(_vm.me) +
+                                      "%\n                                        "
+                                  )
+                                ])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                En el estudio realizado, la (precisión) se\n                                toma como la metrica más importante para\n                                evaluar el comportamiento del modelo,ya que\n                                este ítem de la evaluación representa lo\n                                cerca que esta el resultado de la predicción\n                                del valor verdadero.\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        _vm._l(_vm.data, function(item) {
+                          return _c("p", { key: item.id }, [
+                            _vm._v(
+                              "\n                                    Como criterio de éxito se obtiene un\n                                    porcentaje de " +
+                                _vm._s(item.pre - _vm.me) +
+                                "% de\n                                    diferencia al caso de éxito plateado en\n                                    el proyecto.\n                                "
+                            )
+                          ])
+                        }),
+                        0
+                      )
                     ],
                     1
                   ),
@@ -43280,20 +43397,25 @@ var render = function() {
                       _c("div"),
                       _vm._v(" "),
                       _c("p", [
+                        _c("strong", [_vm._v(_vm._s(item.pos))]),
                         _vm._v(
-                          "\n                                " +
-                            _vm._s(item.pos) +
-                            " usuarios expresarón\n                                comentarios positivos acerca del tema\n                                " +
+                          " usuarios\n                                expresarón comentarios positivos acerca del\n                                tema " +
                             _vm._s(item.name) +
-                            ", " +
-                            _vm._s(item.neg) +
-                            " usuarios\n                                generaron comentarios negativos acerca del\n                                tema " +
+                            ",\n                                "
+                        ),
+                        _c("strong", [_vm._v(_vm._s(item.neg))]),
+                        _vm._v(
+                          " usuarios\n                                generaron comentarios negativos acerca del\n                                tema " +
                             _vm._s(item.name) +
-                            ",\n                                " +
-                            _vm._s(item.mpos) +
-                            " usuarios generaron\n                                comentarios muy positivos, a comparación de\n                                los muy negativos que fue un total de\n                                " +
-                            _vm._s(item.mneg) +
-                            " comentarios.\n                            "
+                            ",\n                                "
+                        ),
+                        _c("strong", [_vm._v(_vm._s(item.mpos))]),
+                        _vm._v(
+                          " usuarios\n                                generaron comentarios muy positivos, a\n                                comparación de los muy negativos que fue un\n                                total de\n                                "
+                        ),
+                        _c("strong", [_vm._v(_vm._s(item.mneg))]),
+                        _vm._v(
+                          "\n                                comentarios.\n                            "
                         )
                       ]),
                       _vm._v(" "),
@@ -43327,97 +43449,62 @@ var render = function() {
                 _c(
                   "div",
                   [
-                    _c("h5", [_vm._v("Comentario popular referente")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.data, function(item) {
-                      return _c(
-                        "div",
-                        { key: item.id, staticClass: "col-lg-12 jumbotron" },
-                        [
-                          _c("p", [_vm._v(_vm._s(item.user))]),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("DESCRIPTION TEXT COMENT")]),
-                          _vm._v(" "),
-                          _c("strong", [_vm._v(_vm._s(item.text))]),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("TOT RETWEET")]),
-                          _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(item.re))])
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
                     _c("center", [
                       _c("h3", [_vm._v("Frecuencia de palabras por tweet")])
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { attrs: { id: "chart2" } },
-                      [
-                        _c("apexchart", {
-                          attrs: {
-                            type: "pie",
-                            width: "480",
-                            options: _vm.chartOptions3,
-                            series: _vm.datapun
-                          }
-                        })
-                      ],
-                      1
-                    ),
+                    _c("table", { staticClass: "table" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.dataWord, function(item) {
+                          return _c("tr", { key: item.id }, [
+                            _c("td", { attrs: { scope: "row" } }, [
+                              _vm._v(_vm._s(item.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(item.pun))])
+                          ])
+                        }),
+                        0
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("p", [
                       _vm._v(
-                        "\n                            En el anterior grafico se representa las 10\n                            palabras mas mencionadas en el conjunto de datos\n                            extraídos acerca del tema tedencia\n                        "
+                        "\n                            En la anterior tabla se representa las palabras\n                            más mencionadas en el conjunto de datos\n                            extraídos acerca del tema tedencia\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("center", [_c("h3", [_vm._v("Ciudades activas")])]),
+                    _vm._v(" "),
+                    _c("table", { staticClass: "table" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.dataCity, function(item) {
+                          return _c("tr", { key: item.id }, [
+                            _c("td", { attrs: { scope: "row" } }, [
+                              _vm._v(_vm._s(item.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(item.pun))])
+                          ])
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            En la anterior tabla se representa las ciudades\n                            más activas con respecto al tema tendencia\n                        "
                       )
                     ])
                   ],
-                  2
+                  1
                 )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane fade",
-                attrs: {
-                  id: "pills-contact",
-                  role: "tabpanel",
-                  "aria-labelledby": "pills-contact-tab"
-                }
-              },
-              [
-                _c("table", { staticClass: "table table-dark" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.data, function(item) {
-                      return _c(
-                        "tr",
-                        { key: item.id, staticClass: "col-lg-12 jumbotron" },
-                        [
-                          _c("td", [_vm._v(_vm._s(item.pre) + "%")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.ex) + "%")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.se) + "%")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.es) + "%")])
-                        ]
-                      )
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                        En el estudio realizado, la (precisión) toma como la\n                        metrica más importante para evaluar el\n                        comportamiento del modelo,ya que este ítem de la\n                        evaluación representa lo cerca que esta el resultado\n                        de la predicción del valor verdadero, es importa.\n                    "
-                  )
-                ])
               ]
             )
           ]
@@ -43474,25 +43561,6 @@ var staticRenderFns = [
             },
             [_vm._v("\n                        Resumen\n                    ")]
           )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item", attrs: { role: "presentation" } }, [
-          _c(
-            "button",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "pills-contact-tab",
-                "data-bs-toggle": "pill",
-                "data-bs-target": "#pills-contact",
-                type: "button",
-                role: "tab",
-                "aria-controls": "pills-contact",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("\n                        TestX\n                    ")]
-          )
         ])
       ]
     )
@@ -43509,7 +43577,33 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Sensibilidad")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Especificidad")])
+        _c("th", [_vm._v("Especificidad")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CE")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("PALABRA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FREQ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("PALABRA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FREQ")])
       ])
     ])
   }
@@ -43700,6 +43794,38 @@ var render = function() {
                       return
                     }
                     _vm.$set(_vm.form, "link", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("cantidad")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.form.re,
+                    expression: "form.re",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.re },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "re", _vm._n($event.target.value))
                   },
                   blur: function($event) {
                     return _vm.$forceUpdate()
@@ -44035,96 +44161,6 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-4" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("user")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.user,
-                    expression: "form.user"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.form.user },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "user", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-4" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("text")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.text,
-                    expression: "form.text"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.form.text },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "text", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("cantidad")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model.number",
-                    value: _vm.form.re,
-                    expression: "form.re",
-                    modifiers: { number: true }
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "number" },
-                domProps: { value: _vm.form.re },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "re", _vm._n($event.target.value))
-                  },
-                  blur: function($event) {
-                    return _vm.$forceUpdate()
-                  }
-                }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-lg-2" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "" } }, [_vm._v("exactitud")]),
@@ -44284,7 +44320,7 @@ var render = function() {
           _vm._v(" "),
           _c("h5", [_vm._v("VAN " + _vm._s(_vm.tot))]),
           _vm._v(" "),
-          _c("h5", [_vm._v("FALTAN " + _vm._s(_vm.limit - _vm.tot))])
+          _c("h5", [_vm._v("FALTAN " + _vm._s(_vm.form.re - _vm.tot))])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -44292,7 +44328,7 @@ var render = function() {
           _vm._v(" "),
           _c("h5", [_vm._v("VAN " + _vm._s(_vm.tot2))]),
           _vm._v(" "),
-          _c("h5", [_vm._v("FALTAN " + _vm._s(_vm.limit - _vm.tot2))])
+          _c("h5", [_vm._v("FALTAN " + _vm._s(_vm.form.re - _vm.tot2))])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -44328,6 +44364,8 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s(item.mpos))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(item.mneg))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.re))]),
                   _vm._v(" "),
                   _c("td", [
                     _c(
@@ -44413,7 +44451,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("U")]),
         _vm._v(" "),
-        _c("th", [_vm._v("E")])
+        _c("th", [_vm._v("E")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("C")])
       ])
     ])
   }
@@ -44563,35 +44603,163 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-xs",
-              attrs: { type: "subtmit" }
-            },
-            [_vm._v("\n                Guardar\n            ")]
-          ),
+        _vm._m(0)
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        attrs: { method: "POST", autocomplete: "off" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.addc()
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-3" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("# Tendencia")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formc.topic_id,
+                      expression: "formc.topic_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.formc,
+                        "topic_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.data, function(item) {
+                  return _c(
+                    "option",
+                    { key: item.id, domProps: { value: item.id } },
+                    [_vm._v(_vm._s(item.name))]
+                  )
+                }),
+                0
+              )
+            ])
+          ]),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-xs mt-3",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.clear()
+          _c("div", { staticClass: "col-lg-3" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("ciudad")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.formc.name,
+                    expression: "formc.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "palabra" },
+                domProps: { value: _vm.formc.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.formc, "name", $event.target.value)
+                  }
                 }
-              }
-            },
-            [_vm._v("\n                L\n            ")]
-          )
-        ])
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("puntaje")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.number",
+                    value: _vm.formc.pun,
+                    expression: "formc.pun",
+                    modifiers: { number: true }
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "puntaje", placeholder: "puntaje" },
+                domProps: { value: _vm.formc.pun },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.formc, "pun", _vm._n($event.target.value))
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
       ]
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-xs", attrs: { type: "subtmit" } },
+        [_vm._v("\n                Guardar\n            ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-xs", attrs: { type: "subtmit" } },
+        [_vm._v("\n                Guardar\n            ")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

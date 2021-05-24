@@ -14,7 +14,7 @@
 
  <nav class="navbar navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">ANALICT</a>
+    <a class="navbar-brand" href="#">APP ANALITICA UPC</a>
   </div>
 </nav>
     <div id="app">

@@ -15,7 +15,7 @@ class WordsController extends Controller
 
       public function indexTwo($id)
     {
-        $word = Word::where('topic_id', $id)->get();
+        $word = Word::where('topic_id', $id)->orderBy('pun','DESC')->get();
         return $word;
     }
 }
