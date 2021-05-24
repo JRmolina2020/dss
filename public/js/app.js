@@ -2162,6 +2162,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", "#26a69a"];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2324,7 +2337,7 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       var timerInterval;
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
         title: "CARGANDO",
-        html: "Extrallendo información",
+        html: "Extrayendo información",
         timer: 5000,
         imageUrl: "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
         imageHeight: 200,
@@ -2357,9 +2370,9 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
                 var item = _step3.value;
 
                 if (item.pos > item.neg) {
-                  _this4.sabertext = "Hay usuarios m\xE1s a favor que encontra ha serca del tema ".concat(item.name, " ");
+                  _this4.sabertext = "Hay usuarios m\xE1s a favor que en contra acerca del tema ".concat(item.name, " ");
                 } else {
-                  _this4.sabertext = "Hay usuarios m\xE1s encontra que a favor a serca del tema ".concat(item.name, " ");
+                  _this4.sabertext = "Hay usuarios m\xE1s en contra que a favor acerca del tema ".concat(item.name, " ");
                 }
               }
             } catch (err) {
@@ -42777,7 +42790,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("h4", [_vm._v("Selecciona el #tendencia")])
+            _c("h4", [_vm._v("Selecciona el hashtags tendencia")])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -42849,40 +42862,46 @@ var render = function() {
               },
               _vm._l(_vm.data, function(item) {
                 return _c("div", { key: item.id }, [
-                  _c(
-                    "div",
-                    [
-                      _c("h1", [
-                        _c("a", { attrs: { href: item.link } }, [
-                          _vm._v(_vm._s(item.name))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("h5", [
-                        _vm._v(_vm._s(item.re) + " Tweets Descargados")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _c("strong", [
-                          _vm._v(
-                            "Usted ha escogido un tipo de tema\n                                    tendencia " +
-                              _vm._s(item.type)
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("h5", [_vm._v("Distribución de sentimientos")]),
-                      _vm._v(" "),
-                      _c("apexchart", {
-                        attrs: {
-                          width: "500",
-                          type: "bar",
-                          options: _vm.chartOptions,
-                          series: _vm.series
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("table", { staticClass: "table table-dark" }, [
+                  _c("div", [
+                    _c("h1", [
+                      _c("a", { attrs: { href: item.link } }, [
+                        _vm._v(_vm._s(item.name))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v(_vm._s(item.re) + " Tweets Descargados")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("strong", [
+                        _vm._v(
+                          "Usted ha escogido un tipo de tema\n                                    tendencia " +
+                            _vm._s(item.type)
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      [
+                        _c("h5", [_vm._v("Distribución de sentimientos")]),
+                        _vm._v(" "),
+                        _c("apexchart", {
+                          attrs: {
+                            width: "500",
+                            type: "bar",
+                            options: _vm.chartOptions,
+                            series: _vm.series
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "table",
+                      { staticClass: "table table-dark table-responsive" },
+                      [
                         _vm._m(1, true),
                         _vm._v(" "),
                         _c(
@@ -42921,30 +42940,39 @@ var render = function() {
                           }),
                           0
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                En el estudio realizado, la (precisión) se\n                                toma como la metrica más importante para\n                                evaluar el comportamiento del modelo,ya que\n                                este ítem de la evaluación representa lo\n                                cerca que esta el resultado de la predicción\n                                del valor verdadero.\n                            "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        _vm._l(_vm.data, function(item) {
-                          return _c("p", { key: item.id }, [
-                            _vm._v(
-                              "\n                                    Como criterio de éxito se obtiene un\n                                    porcentaje de " +
-                                _vm._s(item.pre - _vm.me) +
-                                "% de\n                                    diferencia al caso de éxito plateado en\n                                    el proyecto.\n                                "
-                            )
-                          ])
-                        }),
-                        0
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-justify" }, [
+                      _vm._v(
+                        "\n                                En el estudio realizado, la (precisión) se\n                                toma como la metrica más importante para\n                                evaluar el comportamiento del modelo,ya que\n                                este ítem de la evaluación representa lo\n                                cerca que está el resultado de la predicción\n                                del valor verdadero.\n                            "
                       )
-                    ],
-                    1
-                  ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      _vm._l(_vm.data, function(item) {
+                        return _c("div", { key: item.id }, [
+                          item.pre > _vm.me
+                            ? _c("p", [
+                                _vm._v(
+                                  "\n                                        Como criterio de éxito se obtiene un\n                                        porcentaje de " +
+                                    _vm._s(item.pre - _vm.me) +
+                                    "%\n                                        de diferencia al caso de éxito\n                                        plateado en el proyecto.\n                                    "
+                                )
+                              ])
+                            : _c("p", [
+                                _vm._v(
+                                  "\n                                        Como criterio de éxito se obtiene un\n                                        porcentaje de " +
+                                    _vm._s(_vm.me - item.pre) +
+                                    "%\n                                        de diferencia al caso de éxito\n                                        plateado en el proyecto.\n                                    "
+                                )
+                              ])
+                        ])
+                      }),
+                      0
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -42963,10 +42991,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("div"),
                       _vm._v(" "),
-                      _c("p", [
+                      _c("p", { staticClass: "text-justify" }, [
                         _c("strong", [_vm._v(_vm._s(item.pos))]),
                         _vm._v(
-                          " usuarios\n                                expresarón comentarios positivos acerca del\n                                tema " +
+                          " usuarios\n                                expresaron comentarios positivos acerca del\n                                tema " +
                             _vm._s(item.name) +
                             ",\n                                "
                         ),
@@ -43040,7 +43068,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("p", [
                       _vm._v(
-                        "\n                            En la anterior tabla se representa las palabras\n                            más mencionadas en el conjunto de datos\n                            extraídos acerca del tema tedencia\n                        "
+                        "\n                            En la anterior tabla se representa las palabras\n                            más mencionadas en el conjunto de datos\n                            extraídos referente al tema tedencia\n                        "
                       )
                     ]),
                     _vm._v(" "),

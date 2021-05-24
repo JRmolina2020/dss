@@ -9,7 +9,7 @@
                         src="https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-2-1.png"
                         alt=""
                     />
-                    <h4>Selecciona el #tendencia</h4>
+                    <h4>Selecciona el hashtags tendencia</h4>
                 </center>
 
                 <div class="form-group">
@@ -79,14 +79,19 @@
                                         tendencia {{ item.type }}</strong
                                     >
                                 </p>
-                                <h5>Distribución de sentimientos</h5>
-                                <apexchart
-                                    width="500"
-                                    type="bar"
-                                    :options="chartOptions"
-                                    :series="series"
-                                ></apexchart>
-                                <table class="table table-dark">
+                                <div class="row">
+                                    <h5>Distribución de sentimientos</h5>
+                                    <apexchart
+                                        width="500"
+                                        type="bar"
+                                        :options="chartOptions"
+                                        :series="series"
+                                    ></apexchart>
+                                </div>
+
+                                <table
+                                    class="table table-dark table-responsive"
+                                >
                                     <thead>
                                         <tr>
                                             <th>Precisión</th>
@@ -114,21 +119,29 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p>
+                                <p class="text-justify">
                                     En el estudio realizado, la (precisión) se
                                     toma como la metrica más importante para
                                     evaluar el comportamiento del modelo,ya que
                                     este ítem de la evaluación representa lo
-                                    cerca que esta el resultado de la predicción
+                                    cerca que está el resultado de la predicción
                                     del valor verdadero.
                                 </p>
                                 <div>
-                                    <p v-for="item in data" :key="item.id">
-                                        Como criterio de éxito se obtiene un
-                                        porcentaje de {{ item.pre - me }}% de
-                                        diferencia al caso de éxito plateado en
-                                        el proyecto.
-                                    </p>
+                                    <div v-for="item in data" :key="item.id">
+                                        <p v-if="item.pre > me">
+                                            Como criterio de éxito se obtiene un
+                                            porcentaje de {{ item.pre - me }}%
+                                            de diferencia al caso de éxito
+                                            plateado en el proyecto.
+                                        </p>
+                                        <p v-else>
+                                            Como criterio de éxito se obtiene un
+                                            porcentaje de {{ me - item.pre }}%
+                                            de diferencia al caso de éxito
+                                            plateado en el proyecto.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -141,9 +154,9 @@
                                     :series="series2"
                                 ></apexchart>
                                 <div></div>
-                                <p>
+                                <p class="text-justify">
                                     <strong>{{ item.pos }}</strong> usuarios
-                                    expresarón comentarios positivos acerca del
+                                    expresaron comentarios positivos acerca del
                                     tema {{ item.name }},
                                     <strong>{{ item.neg }}</strong> usuarios
                                     generaron comentarios negativos acerca del
@@ -189,7 +202,7 @@
                             <p>
                                 En la anterior tabla se representa las palabras
                                 más mencionadas en el conjunto de datos
-                                extraídos acerca del tema tedencia
+                                extraídos referente al tema tedencia
                             </p>
                             <center>
                                 <h3>Ciudades activas</h3>
@@ -395,7 +408,7 @@ export default {
             let timerInterval;
             Swal.fire({
                 title: "CARGANDO",
-                html: "Extrallendo información",
+                html: "Extrayendo información",
                 timer: 5000,
                 imageUrl:
                     "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
@@ -421,9 +434,9 @@ export default {
 
                         for (const item of this.data) {
                             if (item.pos > item.neg) {
-                                this.sabertext = `Hay usuarios más a favor que encontra ha serca del tema ${item.name} `;
+                                this.sabertext = `Hay usuarios más a favor que en contra acerca del tema ${item.name} `;
                             } else {
-                                this.sabertext = `Hay usuarios más encontra que a favor a serca del tema ${item.name} `;
+                                this.sabertext = `Hay usuarios más en contra que a favor acerca del tema ${item.name} `;
                             }
                         }
                     });
