@@ -43376,7 +43376,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("p", { staticClass: "text-justify" }, [
+                    _c("p", { staticClass: "text-left" }, [
                       _vm._v(
                         "\n                                En el estudio realizado, la (precisión) se\n                                toma como la metrica más importante para\n                                evaluar el comportamiento del modelo,ya que\n                                este ítem de la evaluación representa lo\n                                cerca que está el resultado de la predicción\n                                del valor verdadero.\n                            "
                       )
@@ -43424,7 +43424,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div"),
                       _vm._v(" "),
-                      _c("p", { staticClass: "text-justify" }, [
+                      _c("p", { staticClass: "text-left" }, [
                         _c("strong", [_vm._v(_vm._s(item.pos))]),
                         _vm._v(
                           " usuarios\n                                expresaron comentarios positivos acerca del\n                                tema " +

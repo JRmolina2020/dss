@@ -119,7 +119,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p class="text-justify">
+                                <p class="text-left">
                                     En el estudio realizado, la (precisión) se
                                     toma como la metrica más importante para
                                     evaluar el comportamiento del modelo,ya que
@@ -154,7 +154,7 @@
                                     :series="series2"
                                 ></apexchart>
                                 <div></div>
-                                <p class="text-justify">
+                                <p class="text-left">
                                     <strong>{{ item.pos }}</strong> usuarios
                                     expresaron comentarios positivos acerca del
                                     tema {{ item.name }},
