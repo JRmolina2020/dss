@@ -396,7 +396,7 @@ export default {
             Swal.fire({
                 title: "CARGANDO",
                 html: "Extrallendo información",
-                timer: 1000,
+                timer: 5000,
                 imageUrl:
                     "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
                 imageHeight: 200,
