@@ -82,7 +82,7 @@
                                 <div class="row">
                                     <h5>Distribución de sentimientos</h5>
                                     <apexchart
-                                        width="500"
+                                        width="480"
                                         type="bar"
                                         :options="chartOptions"
                                         :series="series"
