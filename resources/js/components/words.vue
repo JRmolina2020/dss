@@ -62,13 +62,16 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <label for="">ciudad</label>
-                        <input
-                            type="text"
-                            placeholder="palabra"
-                            class="form-control"
-                            v-model="formc.name"
-                        />
+                        <label for="">Ciudad</label>
+                        <select class="form-control" v-model="formc.name">
+                            <option>Bogotá</option>
+                            <option>Cali</option>
+                            <option>Medellin</option>
+                            <option value="Bucaramanga">Bucaramanga</option>
+                            <option value="Barranquilla">Barranquilla</option>
+                            <option value="Pereira">Pereira</option>
+                            <option value="Otros">Otros</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-2">
