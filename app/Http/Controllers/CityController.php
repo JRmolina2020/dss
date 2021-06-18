@@ -15,7 +15,7 @@ class CityController extends Controller
 
       public function indexTwo($id)
     {
-        $word = City::where('topic_id', $id)->orderBy('pun','ASC')->get();
+        $word = City::where('topic_id', $id)->orderBy('pun','DESC')->get();
         return $word;
     }
 }
