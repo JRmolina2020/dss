@@ -2354,26 +2354,26 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       for (var i = 0; i < this.dataCity.length; i++) {
         var seriesdata23 = [{
           data: [{
-            x: "Bucaramanga",
-            y: this.dataCity[6].pun
-          }, {
-            x: "Medellin",
-            y: this.dataCity[5].pun
+            x: "Bogotá",
+            y: this.dataCity[0].pun
           }, {
             x: "Cali",
-            y: this.dataCity[4].pun
-          }, {
-            x: "Barranquilla",
-            y: this.dataCity[3].pun
-          }, {
-            x: "Bogota",
-            y: this.dataCity[2].pun
-          }, {
-            x: "Pereira",
             y: this.dataCity[1].pun
           }, {
+            x: "Medellin",
+            y: this.dataCity[2].pun
+          }, {
+            x: "Bucaramanga",
+            y: this.dataCity[3].pun
+          }, {
+            x: "Barranquilla",
+            y: this.dataCity[4].pun
+          }, {
+            x: "Pereira",
+            y: this.dataCity[5].pun
+          }, {
             x: "Otros",
-            y: this.dataCity[0].pun
+            y: this.dataCity[6].pun
           }]
         }];
       }

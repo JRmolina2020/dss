@@ -444,32 +444,32 @@ export default {
                     {
                         data: [
                             {
-                                x: "Bucaramanga",
-                                y: this.dataCity[6].pun
-                            },
-                            {
-                                x: "Medellin",
-                                y: this.dataCity[5].pun
+                                x: "Bogotá",
+                                y: this.dataCity[0].pun
                             },
                             {
                                 x: "Cali",
-                                y: this.dataCity[4].pun
-                            },
-                            {
-                                x: "Barranquilla",
-                                y: this.dataCity[3].pun
-                            },
-                            {
-                                x: "Bogota",
-                                y: this.dataCity[2].pun
-                            },
-                            {
-                                x: "Pereira",
                                 y: this.dataCity[1].pun
                             },
                             {
+                                x: "Medellin",
+                                y: this.dataCity[2].pun
+                            },
+                            {
+                                x: "Bucaramanga",
+                                y: this.dataCity[3].pun
+                            },
+                            {
+                                x: "Barranquilla",
+                                y: this.dataCity[4].pun
+                            },
+                            {
+                                x: "Pereira",
+                                y: this.dataCity[5].pun
+                            },
+                            {
                                 x: "Otros",
-                                y: this.dataCity[0].pun
+                                y: this.dataCity[6].pun
                             }
                         ]
                     }
