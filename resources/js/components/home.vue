@@ -172,7 +172,7 @@
                                     <h5>Distribución polar por agrupación</h5>
                                     <apexchart
                                         type="pie"
-                                        width="400"
+                                        width="500"
                                         :options="chartOptions2"
                                         :series="series2"
                                     ></apexchart>
@@ -313,13 +313,13 @@ export default {
                     width: 380,
                     type: "pie"
                 },
-                labels: ["Positivo", "Negativo", "M.positivo", "M.negativo"],
+                labels: ["Positivo", "Negativo", "M.pos", "M.negativo"],
                 responsive: [
                     {
-                        breakpoint: 480,
+                        breakpoint: 180,
                         options: {
                             chart: {
-                                width: 200
+                                width: 300
                             },
                             legend: {
                                 position: "bottom"
@@ -375,7 +375,7 @@ export default {
             //start
             chartOptions3: {
                 chart: {
-                    width: 380,
+                    width: 400,
                     type: "donut"
                 },
                 labels: [],
@@ -444,32 +444,32 @@ export default {
                     {
                         data: [
                             {
-                                x: "Bogotá",
-                                y: this.dataCity[0].pun
-                            },
-                            {
-                                x: "Cali",
-                                y: this.dataCity[1].pun
+                                x: "Bucaramanga",
+                                y: this.dataCity[6].pun
                             },
                             {
                                 x: "Medellin",
-                                y: this.dataCity[2].pun
-                            },
-                            {
-                                x: "Bucaramanga",
-                                y: this.dataCity[3].pun
-                            },
-                            {
-                                x: "Barranquilla",
-                                y: this.dataCity[4].pun
-                            },
-                            {
-                                x: "Pereira",
                                 y: this.dataCity[5].pun
                             },
                             {
+                                x: "Cali",
+                                y: this.dataCity[4].pun
+                            },
+                            {
+                                x: "Barranquilla",
+                                y: this.dataCity[3].pun
+                            },
+                            {
+                                x: "Bogota",
+                                y: this.dataCity[2].pun
+                            },
+                            {
+                                x: "Pereira",
+                                y: this.dataCity[1].pun
+                            },
+                            {
                                 x: "Otros",
-                                y: this.dataCity[6].pun
+                                y: this.dataCity[0].pun
                             }
                         ]
                     }
@@ -501,7 +501,7 @@ export default {
             Swal.fire({
                 title: "CARGANDO",
                 html: "Extrayendo información",
-                timer: 9000,
+                timer: 100,
                 imageUrl:
                     "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
                 imageHeight: 200,

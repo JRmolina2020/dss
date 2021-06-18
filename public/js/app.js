@@ -2231,12 +2231,12 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
           width: 380,
           type: "pie"
         },
-        labels: ["Positivo", "Negativo", "M.positivo", "M.negativo"],
+        labels: ["Positivo", "Negativo", "M.pos", "M.negativo"],
         responsive: [{
-          breakpoint: 480,
+          breakpoint: 180,
           options: {
             chart: {
-              width: 200
+              width: 300
             },
             legend: {
               position: "bottom"
@@ -2281,7 +2281,7 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       //start
       chartOptions3: {
         chart: {
-          width: 380,
+          width: 400,
           type: "donut"
         },
         labels: [],
@@ -2354,26 +2354,26 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       for (var i = 0; i < this.dataCity.length; i++) {
         var seriesdata23 = [{
           data: [{
-            x: "Bogotá",
-            y: this.dataCity[0].pun
-          }, {
-            x: "Cali",
-            y: this.dataCity[1].pun
+            x: "Bucaramanga",
+            y: this.dataCity[6].pun
           }, {
             x: "Medellin",
-            y: this.dataCity[2].pun
-          }, {
-            x: "Bucaramanga",
-            y: this.dataCity[3].pun
-          }, {
-            x: "Barranquilla",
-            y: this.dataCity[4].pun
-          }, {
-            x: "Pereira",
             y: this.dataCity[5].pun
           }, {
+            x: "Cali",
+            y: this.dataCity[4].pun
+          }, {
+            x: "Barranquilla",
+            y: this.dataCity[3].pun
+          }, {
+            x: "Bogota",
+            y: this.dataCity[2].pun
+          }, {
+            x: "Pereira",
+            y: this.dataCity[1].pun
+          }, {
             x: "Otros",
-            y: this.dataCity[6].pun
+            y: this.dataCity[0].pun
           }]
         }];
       }
@@ -2410,7 +2410,7 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
         title: "CARGANDO",
         html: "Extrayendo información",
-        timer: 4000,
+        timer: 100,
         imageUrl: "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
         imageHeight: 200,
         imageAlt: "A tall image",
@@ -43532,7 +43532,7 @@ var render = function() {
                               _c("apexchart", {
                                 attrs: {
                                   type: "pie",
-                                  width: "400",
+                                  width: "500",
                                   options: _vm.chartOptions2,
                                   series: _vm.series2
                                 }
