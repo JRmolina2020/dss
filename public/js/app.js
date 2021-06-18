@@ -2410,7 +2410,7 @@ var colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#546E7A", 
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
         title: "CARGANDO",
         html: "Extrayendo información",
-        timer: 100,
+        timer: 9000,
         imageUrl: "https://icons8.com/vue-static/landings/animated-icons/icons/twitter/twitter_200.gif",
         imageHeight: 200,
         imageAlt: "A tall image",
